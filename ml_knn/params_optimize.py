@@ -13,11 +13,10 @@ best_lib_fix = {'k': 1}
 best_my_unfix = {'radius': 1.7242377750544042}
 best_lib_unfix = {'radius': 0.061652883765028865}
 
-kernels = [gauss_kernel, epanechnikov_kernel, uniform_kernel, triangular_kernel,
-           kernel_factory(2, 2), kernel_factory(3, 3), kernel_factory(4, 4)]
+kernels = [gauss_kernel, epanechnikov_kernel, uniform_kernel, triangular_kernel, kernel_factory(3, 3)]
 
 def find_my_best_params_fix(df, valid_part = 0.21):
-    train, valid = train_test_split(df, test_size=valid_part)
+    train, valid = train_test_split(df, test_size=valid_part, random_state=42)
     x_valid, y_valid = valid[valid.columns[:-1]], valid[valid.columns[-1]]
 
     def tryf(trial):
@@ -48,7 +47,7 @@ def find_my_best_params_fix(df, valid_part = 0.21):
     return study.best_params
 
 def find_lib_best_params_fix(df, valid_part = 0.21):
-    train, valid = train_test_split(df, test_size=valid_part)
+    train, valid = train_test_split(df, test_size=valid_part, random_state=42)
     x_train, y_train = valid[valid.columns[:-1]].to_numpy(), valid[valid.columns[-1]].to_numpy()
     x_valid, y_valid = valid[valid.columns[:-1]].to_numpy(), valid[valid.columns[-1]].to_numpy()
 
@@ -75,7 +74,7 @@ def find_lib_best_params_fix(df, valid_part = 0.21):
     return study.best_params
 
 def find_my_best_params_unfix(df, valid_part = 0.21):
-    train, valid = train_test_split(df, test_size=valid_part)
+    train, valid = train_test_split(df, test_size=valid_part, random_state=42)
     x_valid, y_valid = valid[valid.columns[:-1]], valid[valid.columns[-1]]
 
     def tryf(trial):
@@ -104,7 +103,7 @@ def find_my_best_params_unfix(df, valid_part = 0.21):
 
 
 def find_lib_best_params_unfix(df, valid_part = 0.21):
-    train, valid = train_test_split(df, test_size=valid_part)
+    train, valid = train_test_split(df, test_size=valid_part, random_state=42)
     x_train, y_train = valid[valid.columns[:-1]], valid[valid.columns[-1]]
     x_valid, y_valid = valid[valid.columns[:-1]], valid[valid.columns[-1]]
 

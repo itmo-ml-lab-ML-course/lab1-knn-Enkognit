@@ -46,7 +46,7 @@ def test_classifier(train, test):
 # def error_k_dep():
 #     KNNClassifier()
 
-dt_name = 'datasets/KNNAlgorithmDataset.csv'
+dt_name = 'datasets/heart.csv'
 def load_dataset():
     df = get_dataset(dt_name)
 
